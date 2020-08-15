@@ -1,0 +1,25 @@
+  <form novalidate name="frmHeroi">
+ 
+ 	<div>
+	  	Nome: <input name="txtNome" ng-model="heroi.nome" required />
+	  	<span ng-show="frmHeroi.txtNome.$dirty">Campo Nome Obrigatorio</span>
+  	</div>
+
+	<div>
+	    <label for="singleSelect"> Universo: </label><br>
+	    <select name="singleSelect" ng-repeat="uni in universos">
+	      <option value="{{uni.id}}">{{uni.name}}</option>
+	    </select><br>
+    </div>
+
+	<div>
+	    <hr>
+	    <label for="multipleSelect"> Multiple select: </label><br>
+	    <select name="multipleSelect" id="multipleSelect" ng-repeat="pod in poderes" multiple>
+			<option value="{{pod.id}}">{{pod.name}}</option>
+	    </select><br>
+	    <!-- <tt>multipleSelect = {{data.multipleSelect}}</tt><br/> -->
+	    
+	    <input type="button" value="Salvar" ng-click="salvarCliente()" ng-disable="frmHeroi.$invalid"/>
+    </div>
+  </form>
