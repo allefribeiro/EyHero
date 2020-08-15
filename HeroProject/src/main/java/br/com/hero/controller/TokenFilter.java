@@ -5,6 +5,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.filter.GenericFilterBean;
 
@@ -34,7 +35,8 @@ public class TokenFilter extends GenericFilterBean {
 		}
 		catch( JwtException e)
 		{
-			throw new ServletException("Token invalido!");
+			((HttpServletResponse) response).sendError(HttpServletResponse.SC_UNAUTHORIZED, "Token invalido!");
+			//throw new ServletException("Token invalido!");
 		}
 		
 		chain.doFilter(request, response);
