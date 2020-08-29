@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.3.3.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.hero</groupId>
 	<artifactId>HeroProject</artifactId>
@@ -23,6 +24,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+		
+		<!-- Possibilitar fazer cache em memoria de dados consultados do banco que raramente sao alterados -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-cache</artifactId>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -32,30 +40,34 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
-		
+
 		<dependency>
-		    <groupId>io.jsonwebtoken</groupId>
-		    <artifactId>jjwt-api</artifactId>
-		    <version>0.11.2</version>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-api</artifactId>
+			<version>0.11.2</version>
 		</dependency>
 		<dependency>
-		    <groupId>io.jsonwebtoken</groupId>
-		    <artifactId>jjwt-impl</artifactId>
-		    <version>0.11.2</version>
-		    <scope>runtime</scope>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-impl</artifactId>
+			<version>0.11.2</version>
+			<scope>runtime</scope>
 		</dependency>
 		<dependency>
-		    <groupId>io.jsonwebtoken</groupId>
-		    <artifactId>jjwt-jackson</artifactId> <!-- or jjwt-gson if Gson is preferred -->
-		    <version>0.11.2</version>
-		    <scope>runtime</scope>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId> <!-- or jjwt-gson if Gson is preferred -->
+			<version>0.11.2</version>
+			<scope>runtime</scope>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
+		<!-- A versao definida originalmente estava entrando em conflito com a 
+			versao do Hibernate referente a dependencia spring-boot-starter-data-jpa 
+			usando o auto complete da IDE decobri que tem uma propriedade que define 
+			a versão que deve ser utilizada -->
 		<dependency>
-		    <groupId>org.hibernate</groupId>
-		    <artifactId>hibernate-validator</artifactId>
-		    <version>4.0.2.GA</version>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>${hibernate-validator.version}</version>
 		</dependency>
 
 		<dependency>
@@ -80,6 +92,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		
 	</dependencies>
 
 	<build>

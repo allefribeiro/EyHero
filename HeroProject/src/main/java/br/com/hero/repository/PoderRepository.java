@@ -9,5 +9,7 @@ import br.com.hero.models.Poder;
 @Repository
 public interface PoderRepository extends JpaRepository<Heroi, Long> {
 
-	Iterable<Poder> findByEvento( Heroi heroi);
+	// Para Jpa repository o nome do metodo indica como montar a query que vai executar no banco.
+	// Como na entdade Heroi nao tem a propriedade evento estava dando erro
+	Iterable<Poder> findByNome( Poder poder);
 }
